@@ -172,6 +172,97 @@
 				$(".historylist li:last-child").remove();
 			})
 	}
+	// 基于准备好的dom，初始化echarts实例
+         var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        option = {
+//  title: {
+//      text: '未来一周气温变化',
+//      subtext: '纯属虚构'
+//  },
+    tooltip: {
+        trigger: 'axis'
+    },
+//  legend: {
+//      data:['最高气温','最低气温']
+//  },
+    toolbox: {
+        show: false,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis:  {
+    	show: false,
+        type: 'category',
+        boundaryGap: false,
+        data: ['10.12','10.13','10.14','10.15','10.16','10.17','10.18','10.19','10.20','10.21','10.22','10.23','10.24','10.25','10.26','10.27','10.28']
+    },
+    yAxis: {
+    	show:false,
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name:'最高气温',
+            type:'line',
+            data:[11,11,15,13,12,13,10,11,12,11,15,14,10,9,8,11],
+//          markPoint: {
+//              data: [
+//                  {type: 'max', name: '最大值'},
+//                  {type: 'min', name: '最小值'}
+//              ]
+//          },
+//          markLine: {
+//              data: [
+//                  {type: 'average', name: '平均值'}
+//              ]
+//          }
+        },
+        {
+            name:'最低气温',
+            type:'line',
+            data:[1,-2,2,5,3,2,0,-2,1,0,5,3,2,-3,2,-1],
+//          markPoint: {
+//              data: [
+//                  {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+//              ]
+//          },
+//          markLine: {
+//              data: [
+//                  {type: 'average', name: '平均值'},
+//                  [{
+//                      symbol: 'none',
+//                      x: '90%',
+//                      yAxis: 'max'
+//                  }, {
+//                      symbol: 'circle',
+//                      label: {
+//                          normal: {
+//                              position: 'start',
+//                              formatter: '最大值'
+//                          }
+//                      },
+//                      type: 'max',
+//                      name: '最高点'
+//                  }]
+//              ]
+//          }
+        }
+    ]
+};
+myChart.setOption(option);
+       
 //})
 //1.获取默认城市的天气信息
 //2.获取所有城市的信息
